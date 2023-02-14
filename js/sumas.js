@@ -1,3 +1,6 @@
+/*
+*https://www.w3resource.com/javascript-exercises/bit-manipulation/bit-manipulation-exercise-13.php
+*/
 function myFunction() {  
     let x,y,suma,text;  
     x = document.getElementById("num1").value;  
