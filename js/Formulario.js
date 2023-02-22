@@ -6,11 +6,12 @@ const expresiones = {
 	nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
 	password: /^.{4,12}$/, // 4 a 12 digitos.
 	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-	telefono: /^\d{7,14}$/ // 7 a 14 numeros.
+	telefono: /^\d{7,14}$/, // 7 a 14 numeros.
     calle: /^[a-zA-ZÀ-ÿ\s]{2,4}$/,
     cruzamientos: /^[a-zA-ZÀ-ÿ\s]$/,
     referencia: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
     ciudad: /^[a-zA-ZÀ-ÿ\s]{10,10}$/,
+	colonia: /^[0-9a-zA-Z]$/,
 }
 
 const campos = {
@@ -23,6 +24,7 @@ const campos = {
     cruzamientos: false,
     referencia: false,
     ciudad: false,
+	colonia:false,
 }
 
 const validarFormulario = (e) => {
@@ -57,6 +59,9 @@ const validarFormulario = (e) => {
 		break;
         case "ciudad":
 			validarCampo(expresiones.ciudad, e.target, 'ciudad');
+		break;
+		case "colonia":
+			validarCampo(expresiones.colonia, e.target, 'colonia');
 		break;
 	}
 }
@@ -109,7 +114,7 @@ formulario.addEventListener('submit', (e) => {
 	e.preventDefault();
 
 	const terminos = document.getElementById('terminos');
-	if(campos.usuario && campos.nombre && campos.password && campos.correo && campos.telefono && campos.calle && campos.cruzamientos && campos.referencia && campos.ciudad && terminos.checked ){
+	if(campos.usuario && campos.nombre && campos.password && campos.correo && campos.telefono && campos.calle && campos.cruzamientos && campos.referencia && campos.colonia && terminos.checked ){
 		formulario.reset();
 
 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');
