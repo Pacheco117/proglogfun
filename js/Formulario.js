@@ -7,6 +7,10 @@ const expresiones = {
 	password: /^.{4,12}$/, // 4 a 12 digitos.
 	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 	telefono: /^\d{7,14}$/ // 7 a 14 numeros.
+    calle: /^[a-zA-ZÀ-ÿ\s]{2,4}$/,
+    cruzamientos: /^[a-zA-ZÀ-ÿ\s]$/,
+    referencia: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
+    ciudad: /^[a-zA-ZÀ-ÿ\s]{10,10}$/,
 }
 
 const campos = {
@@ -14,7 +18,11 @@ const campos = {
 	nombre: false,
 	password: false,
 	correo: false,
-	telefono: false
+	telefono: false,
+    calle: false,
+    cruzamientos: false,
+    referencia: false,
+    ciudad: false,
 }
 
 const validarFormulario = (e) => {
@@ -37,6 +45,18 @@ const validarFormulario = (e) => {
 		break;
 		case "telefono":
 			validarCampo(expresiones.telefono, e.target, 'telefono');
+		break;
+        case "calle":
+			validarCampo(expresiones.calle, e.target, 'calle');
+		break;
+        case "cruzamientos":
+			validarCampo(expresiones.cruzamientos, e.target, 'cruzamientos');
+		break;
+        case "referencia":
+			validarCampo(expresiones.referencia, e.target, 'referencia');
+		break;
+        case "ciudad":
+			validarCampo(expresiones.ciudad, e.target, 'ciudad');
 		break;
 	}
 }
@@ -89,7 +109,7 @@ formulario.addEventListener('submit', (e) => {
 	e.preventDefault();
 
 	const terminos = document.getElementById('terminos');
-	if(campos.usuario && campos.nombre && campos.password && campos.correo && campos.telefono && terminos.checked ){
+	if(campos.usuario && campos.nombre && campos.password && campos.correo && campos.telefono && campos.calle && campos.cruzamientos && campos.referencia && campos.ciudad && terminos.checked ){
 		formulario.reset();
 
 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');
